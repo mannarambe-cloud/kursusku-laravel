@@ -1,5 +1,4 @@
 # KursusKu
-
 Project praktikum Pemrograman Web III.
 
 ## Requirement
@@ -27,4 +26,4 @@ Project praktikum Pemrograman Web III.
 - Database
 - CRUD
 - Authentication
-- Relasi dat
+- Relasi data
