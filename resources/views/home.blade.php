@@ -1,44 +1,28 @@
-<!doctype html>
-<html lang="id">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ $siteName }}</title>
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-</head>
-<body>
-<header class="navbar">
-    <div class="container">
-        <strong>{{ $siteName }}</strong>
-        <nav>
-            <a href="{{ route('home') }}" style="color:white">Beranda</a>
-        </nav>
-    </div>
-</header>
+@extends('layouts.app')
 
-<main class="container">
+@section('title', $siteName)
+
+@section('content')
     <section class="hero">
         <div>
-            <p>Belajar Web Secara Bertahap</p>
-            <h1>Bangun kemampuan web dari PHP sampai Laravel.</h1>
-            <p>KursusKu menyediakan latihan terarah untuk pemula.</p>
+            <h1>Selamat Datang di {{ $siteName }}</h1>
+            <p>Pilih kursus unggulan kami dan mulai belajar hari ini.</p>
+            <a href="{{ route('enrollments.create') }}">Daftar Sekarang</a>
         </div>
-        <img src="{{ asset('images/hero-kursus.jpg') }}"
-             alt="Ilustrasi kelas KursusKu">
+
+        <img src="{{ asset('images/hero-kursus.jpg') }}" alt="Logo {{ $siteName }}">
     </section>
 
-    <section>
-        <h2>Program Belajar Unggulan</h2>
-        <div class="course-grid">
-            @foreach ($featured as $course)
-                <article class="card">
-                    <small>{{ $course['code'] }}</small>
-                    <h3>{{ $course['name'] }}</h3>
-                    <p>{{ $course['description'] }}</p>
-                </article>
-            @endforeach
-        </div>
+    <h2 class="section-title">Kursus Unggulan</h2>
+
+    <section class="course-grid">
+        @foreach ($featured as $course)
+            <article class="card">
+                <span class="code">{{ $course['code'] }}</span>
+                <h3>{{ $course['name'] }}</h3>
+                <p>{{ $course['description'] }}</p>
+                <a href="{{ route('enrollments.create') }}">Daftar</a>
+            </article>
+        @endforeach
     </section>
-</main>
-</body>
-</html>
+@endsection

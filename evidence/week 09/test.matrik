@@ -1,0 +1,12 @@
+| No | Skenario | Cara mengetes | Hasil yang diharapkan | Hasil | Catatan |
+|----|----------|---------------|------------------------|-------|---------|
+| 1 | Beranda dibuka | Buka `http://127.0.0.1:8000` | Layout, navbar, Bootstrap tampil | PASS | Navbar dan tombol Bootstrap tampil |
+| 2 | Viewport diperkecil | Kecilkan lebar browser | Tombol hamburger muncul dan menu bisa dibuka | PASS | Menu collapse berfungsi |
+| 3 | Halaman pendaftaran dibuka | Klik menu Pendaftaran | Layout sama, form tampil | PASS | Navbar sama dengan Beranda |
+| 4 | Select masih kosong | Buka form, jangan pilih kursus | Tertulis "Pilih kursus untuk melihat sisa kursi." | PASS | Kotak abu-abu dengan teks default |
+| 5 | Pilih Web Dasar | Pilih di dropdown | "12 kursi tersisa untuk Web Dasar." | PASS | Kotak berubah hijau |
+| 6 | Pilih PHP Dasar | Pilih di dropdown | "8 kursi tersisa untuk PHP Dasar." | PASS | Kotak berubah hijau |
+| 7 | Pilih Laravel Dasar | Pilih di dropdown | "4 kursi tersisa untuk Laravel Dasar." | PASS | Kotak berubah hijau |
+| 8 | Submit data valid | Isi nama, email valid, pilih kursus, kirim | POST diterima, muncul pesan sukses | PASS | Pesan hijau "Form lolos validasi" tampil |
+| 9 | Submit email salah | Isi email tanpa format benar, kirim | Pesan validasi tampil | PASS | Validasi menolak email tidak valid |
+| 10 | Network tab diamati | F12, tab Jaringan, filter Fetch/XHR, ganti kursus | GET availability, status 200, response JSON | PASS | Lihat 04-network-json.png |
