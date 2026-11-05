@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,6 @@ Route::get('/courses/{course}/availability', function (int $course) use ($course
         'remaining' => $courses[$course]['remaining'],
     ]);
 })->whereNumber('course')->name('courses.availability');
+
+// Hanya method yang sudah dibuat di controller
+Route::resource('courses', CourseController::class);

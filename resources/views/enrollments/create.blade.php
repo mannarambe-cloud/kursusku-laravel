@@ -3,73 +3,69 @@
 @section('title', 'Pendaftaran Kursus')
 
 @section('content')
-    <div class="form-box">
-        <h1>Pendaftaran Kursus</h1>
+<form method="POST" action="{{ route('enrollments.preview') }}" class="form-box" id="enrollment-form">
+    @csrf
 
-        <form action="{{ route('enrollments.preview') }}" method="POST" novalidate>
-            @csrf
+    <h1>Pendaftaran Kursus</h1>
+    <p class="hint">Pilih kursus. Jumlah kursi akan dicek tanpa reload halaman.</p>
 
-            <label for="name">Nama</label>
-            <input type="text" id="name" name="name"
-                   class="{{ $errors->has('name') ? 'has-error' : '' }}"
-                   value="{{ old('name') }}">
-            @error('name') <div class="error">{{ $message }}</div> @enderror
+    <label for="name">Nama</label>
+    <input type="text" id="name" name="name" value="{{ old('name') }}"
+           class="{{ $errors->has('name') ? 'has-error' : '' }}">
+    @error('name')
+        <div class="error">{{ $message }}</div>
+    @enderror
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email"
-                   class="{{ $errors->has('email') ? 'has-error' : '' }}"
-                   value="{{ old('email') }}">
-            @error('email') <div class="error">{{ $message }}</div> @enderror
+    <label for="email">Email</label>
+    <input type="email" id="email" name="email" value="{{ old('email') }}"
+           class="{{ $errors->has('email') ? 'has-error' : '' }}">
+    @error('email')
+        <div class="error">{{ $message }}</div>
+    @enderror
 
-            <label for="course_id">Kursus</label>
-            <select id="course_id" name="course_id"
-                    class="{{ $errors->has('course_id') ? 'has-error' : '' }}">
-                <option value="">-- Pilih kursus --</option>
-                @foreach ($courses as $id => $course)
-                    <option value="{{ $id }}" @selected(old('course_id') == $id)>
-                        {{ $course['name'] }}
-                    </option>
-                @endforeach
-            </select>
-            @error('course_id') <div class="error">{{ $message }}</div> @enderror
-            <div id="availability" class="hint"></div>
+    <label for="course_id">Pilih Kursus</label>
+    <select id="course_id" name="course_id"
+            class="{{ $errors->has('course_id') ? 'has-error' : '' }}">
+        <option value="">-- pilih kursus --</option>
+        @foreach ($courses as $id => $course)
+            <option value="{{ $id }}" @selected(old('course_id') == $id)>
+                {{ $course['name'] }}
+            </option>
+        @endforeach
+    </select>
+    @error('course_id')
+        <div class="error">{{ $message }}</div>
+    @enderror
 
-            <button type="submit">Kirim</button>
-        </form>
+    <div class="hint" id="availability" style="padding: 12px 14px; background: var(--primary-light); border-radius: 12px;">
+        Pilih kursus untuk melihat sisa kursi.
     </div>
+
+    <button type="submit">Kirim Pendaftaran</button>
+</form>
 @endsection
 
 @push('scripts')
 <script>
     const select = document.getElementById('course_id');
-    const info = document.getElementById('availability');
-    const urlTemplate = @json(route('courses.availability', ['course' => '__ID__']));
+    const box = document.getElementById('availability');
 
-    async function loadAvailability() {
-        const id = select.value;
-
-        if (!id) {
-            info.textContent = '';
+    select.addEventListener('change', async function () {
+        if (!this.value) {
+            box.textContent = 'Pilih kursus untuk melihat sisa kursi.';
             return;
         }
 
-        info.textContent = 'Memeriksa ketersediaan...';
+        box.textContent = 'Memeriksa...';
 
         try {
-            const response = await fetch(urlTemplate.replace('__ID__', id), {
-                headers: { 'Accept': 'application/json' },
-            });
-
-            if (!response.ok) throw new Error('Gagal memuat data');
-
-            const data = await response.json();
-            info.textContent = `Sisa kuota ${data.course}: ${data.remaining} kursi`;
+            const res = await fetch('/courses/' + this.value + '/availability');
+            if (!res.ok) throw new Error('Gagal');
+            const data = await res.json();
+            box.textContent = data.course + ': sisa ' + data.remaining + ' kursi.';
         } catch (e) {
-            info.textContent = 'Tidak dapat memuat ketersediaan.';
+            box.textContent = 'Gagal memeriksa ketersediaan.';
         }
-    }
-
-    select.addEventListener('change', loadAvailability);
-    loadAvailability();
+    });
 </script>
 @endpush
