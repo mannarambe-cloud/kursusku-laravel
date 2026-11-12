@@ -1,0 +1,17 @@
+| No. | Skenario | Input/Tindakan | Hasil yang Diharapkan | Status |
+|---:|---|---|---|---|
+| 1 | Kode duplikat saat tambah | Gunakan code yang sudah ada | Ditolak, muncul error pada field code | ... |
+| 2 | Nama kosong | name = "" | Ditolak, nama wajib diisi | ... |
+| 3 | Nama terlalu pendek | name = "AI" | Ditolak, minimal 3 karakter | ... |
+| 4 | Biaya negatif | fee = -1000 | Ditolak, biaya minimal 0 | ... |
+| 5 | Biaya bukan angka bulat | fee = abc | Ditolak, biaya harus integer | ... |
+| 6 | Kuota nol | quota = 0 | Ditolak | ... |
+| 7 | Kuota melebihi batas | quota = 501 | Ditolak | ... |
+| 8 | Kuota minimum | quota = 1 | Diterima | ... |
+| 9 | Kuota maksimum | quota = 500 | Diterima | ... |
+| 10 | Tanggal tidak valid | Masukkan tanggal yang tidak valid | Ditolak oleh validasi date | ... |
+| 11 | Status tidak valid | status = active | Ditolak; hanya draft, open, atau closed | ... |
+| 12 | Update tanpa mengubah code | Edit Course, biarkan code tetap | Update berhasil | ... |
+| 13 | Update memakai code milik Course lain | Ganti code dengan code yang sudah digunakan | Ditolak oleh validasi unique | ... |
+| 14 | Update data valid | Ubah nama, biaya, kuota, atau status dengan nilai valid | Berhasil dan detail menampilkan data baru | ... |
+| 15 | Hapus Course | Hapus Course dummy dan pilih OK | Data hilang dari index dan pesan sukses tampil | ... |

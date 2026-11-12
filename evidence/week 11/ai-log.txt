@@ -1,0 +1,4 @@
+1. AI Menggunakan method pada CourseController.
+2. AI Menggunakan StoreCourseRequest dan UpdateCourseRequest.
+3. AI Menguji data valid, data tidak valid, update, dan delete.
+4. AI membantu memberikan arahan dalam pengerjaan

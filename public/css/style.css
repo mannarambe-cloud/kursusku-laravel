@@ -242,3 +242,152 @@ body {
     .hero { padding: 48px 0; }
     .hero img { transform: none; }
 }
+/* ---------- Halaman Detail Course ---------- */
+.detail-wrap { max-width: 860px; margin: 40px auto 60px; }
+
+.crumb {
+    display: flex;
+    gap: 8px;
+    margin: 20px 0 14px;
+    font-size: .92rem;
+    color: var(--muted);
+}
+.crumb a { color: var(--primary); text-decoration: none; font-weight: 600; }
+.crumb a:hover { text-decoration: underline; }
+
+.detail-card {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-top: 5px solid var(--primary);
+    border-radius: 22px;
+    box-shadow: 0 20px 50px rgba(91, 33, 182, .15);
+    overflow: hidden;
+}
+
+.detail-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    padding: 32px;
+    background: linear-gradient(135deg, var(--primary-light), #fff 70%);
+    border-bottom: 1px solid var(--border);
+}
+.detail-code {
+    display: inline-block;
+    padding: 3px 14px;
+    font-size: .85rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 999px;
+}
+.detail-header h1 {
+    margin: 12px 0 4px;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    line-height: 1.2;
+    color: var(--primary-dark);
+}
+.detail-header p { margin: 0; color: var(--muted); }
+
+/* Status */
+.status-pill {
+    padding: 8px 20px;
+    font-weight: 700;
+    font-size: .9rem;
+    border-radius: 999px;
+    border: 1px solid transparent;
+}
+.status-draft  { color: #92400e; background: #fef3c7; border-color: #fcd34d; }
+.status-open   { color: #166534; background: #dcfce7; border-color: #86efac; }
+.status-closed { color: #991b1b; background: #fee2e2; border-color: #fca5a5; }
+
+/* Statistik */
+.detail-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    padding: 28px 32px 8px;
+}
+.stat {
+    padding: 20px;
+    text-align: center;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    transition: transform .2s, box-shadow .2s;
+}
+.stat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 26px rgba(124, 58, 237, .18);
+}
+.stat-icon  { font-size: 1.6rem; margin-bottom: 4px; }
+.stat-label { font-size: .85rem; color: var(--muted); font-weight: 600; }
+.stat-value { margin-top: 2px; font-size: 1.15rem; font-weight: 800; color: var(--primary-dark); }
+
+/* Deskripsi */
+.detail-body { padding: 24px 32px 28px; }
+.detail-body h2 { margin: 0 0 8px; font-size: 1.1rem; color: var(--primary-dark); }
+.detail-body p {
+    margin: 0;
+    padding: 16px 18px;
+    background: var(--bg);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 12px 12px 0;
+    color: var(--text);
+    white-space: pre-line;
+}
+
+/* Tombol aksi */
+.detail-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    padding: 20px 32px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+}
+.actions-right { display: flex; gap: 10px; flex-wrap: wrap; }
+.actions-right form { margin: 0; }
+
+.btn-main, .btn-ghost, .btn-danger {
+    display: inline-block;
+    padding: 11px 24px;
+    font: inherit;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform .15s, box-shadow .15s, background .15s, color .15s;
+}
+.btn-main {
+    color: #fff;
+    border: 0;
+    background: linear-gradient(90deg, #7c3aed, #a855f7);
+    box-shadow: 0 8px 20px rgba(124, 58, 237, .35);
+}
+.btn-main:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(124, 58, 237, .5); }
+.btn-ghost {
+    color: var(--primary-dark);
+    background: #fff;
+    border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--primary-light); }
+.btn-danger {
+    color: #dc2626;
+    background: #fff;
+    border: 1px solid #fca5a5;
+}
+.btn-danger:hover { color: #fff; background: #dc2626; border-color: #dc2626; }
+
+@media (max-width: 700px) {
+    .detail-stats { grid-template-columns: 1fr; padding: 20px; }
+    .detail-header, .detail-body, .detail-actions { padding-left: 20px; padding-right: 20px; }
+    .detail-actions { flex-direction: column; align-items: stretch; }
+    .actions-right { justify-content: stretch; }
+    .actions-right > * { flex: 1; }
+    .actions-right .btn-main, .actions-right .btn-danger, .btn-ghost { text-align: center; width: 100%; }
+}
