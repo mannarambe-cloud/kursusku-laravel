@@ -1,0 +1,7 @@
+TEST MATRIX KURSUSKU
+No.	ID Test	Skenario Pengujian	Hasil yang Diharapkan	Hasil Aktual	Status
+1	TC-01	Pencarian 0 hasil	Muncul pesan tidak ada kursus yang sesuai.	Belum diuji	-
+2	TC-02	Pencarian 1 hasil	Tepat 1 data kursus ditampilkan.	Belum diuji	-
+3	TC-03	Pencarian lebih dari 10 hasil	Maksimal 10 data tampil dan pagination tersedia.	Belum diuji	-
+4	TC-04	Pencarian menggunakan spasi	Kata kunci dengan spasi dapat terbaca dengan benar.	Belum diuji	-
+5	TC-05	Filter status dan pagination halaman 2	Status dan kata kunci tetap tersimpan saat pindah halaman.	Belum diuji	-
